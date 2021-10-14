@@ -46,7 +46,7 @@ try{
     });
 }
 catch(err){
-    console.log(err)
+    console.log(err + "h")
 }
 
 const PORT = process.env.PORT || 3000;
