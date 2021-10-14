@@ -13,8 +13,8 @@ app.use(cors({origin: '*'}));
 // All other GET requests not handled before will return our VUE app
 app.use(serveStatic(__dirname + "/dist/index.html"));
 
-app.get('/', function(req,res) {
-    res.sendFile('index.html', {root:path.join( __dirname + "/app/dist/")});
+app.get('/.*/', function(req,res) {
+    res.sendFile('index.html', {root:path.join( __dirname + "/dist/")});
  });
 
 var apiRoutes = require('./routes/api-routes')
