@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node api/server.js",
-    "build": "cd app && npm install && npm run build"
+    "start": "env-cmd -f ./config/dev.env node server.js"
   },
   "engines": {
     "node": "14.17.6"

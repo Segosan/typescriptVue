@@ -11,7 +11,7 @@ app.use(cors({origin: '*'}));
 
 // All other GET requests not handled before will return our VUE app
 app.get('/.*/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../app/public/', 'index.html'));
+    res.sendFile(path.resolve(__dirname + '/../build'));
 });
 
 var apiRoutes = require('./routes/api-routes')
@@ -28,7 +28,7 @@ app.use(function(req,res,next){
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     next();
 })
-app.use(express.static(path.join(__dirname, '../app/build')));
+app.use(express.static(path.join(__dirname, '../app/dist')));
 
 app.use('/api',apiRoutes);
 
