@@ -11,7 +11,7 @@ app.use(cors({origin: '*'}));
 
 // All other GET requests not handled before will return our VUE app
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/../build'));
+    res.sendFile(path.resolve(__dirname + '/../dist'));
 });
 
 var apiRoutes = require('./routes/api-routes')
