@@ -10,7 +10,7 @@ require('dotenv').config()
 app.use(cors({origin: '*'}));
 
 // All other GET requests not handled before will return our VUE app
-app.get('/.*/', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../build'));
 });
 
