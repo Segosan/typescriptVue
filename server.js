@@ -2,6 +2,7 @@ let express = require('express');
 var mongoose = require('mongoose')
 const path = require('path');
 var bodyParser = require('body-parser');
+var serveStatic = require('serve-static');
 var cors = require('cors');
 var app = express();
 require('dotenv').config()
@@ -10,9 +11,11 @@ require('dotenv').config()
 app.use(cors({origin: '*'}));
 
 // All other GET requests not handled before will return our VUE app
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
-});
+app.use(serveStatic(__dirname + "/dist/index.html"));
+
+app.get('/', function(req,res) {
+    res.sendFile('index.html', {root:path.join( __dirname + "/app/dist/")});
+ });
 
 var apiRoutes = require('./routes/api-routes')
 
@@ -29,10 +32,8 @@ app.use(function(req,res,next){
     next();
 })
 
-// this * route is to serve project on different page routes except root `/`
-app.get("/", function (req, res) {
-	res.sendFile(path.join(__dirname, '/app/dist/index.html'))
-})
+app.use(serveStatic(__dirname + "/dist"));
+
 
 app.use('/api',apiRoutes);
 
@@ -50,7 +51,7 @@ try{
     });
 }
 catch(err){
-    console.log(err + "h")
+    console.log(err)
 }
 
 const PORT = process.env.PORT || 3000;
